@@ -1,11 +1,12 @@
 import React from "react";
 import styled from "styled-components/native";
-import { Text, View, Image } from "react-native";
+import { View, Image } from "react-native";
 import { Card } from "react-native-paper";
 import { SvgXml } from "react-native-svg";
 import star from "../../../../assets/star";
 import open from "../../../../assets/open";
 import { Spacer } from "../../../components/spacer/spacer.component";
+import { Text } from "../../../components/typography/text.component";
 
 const ResturantCard = styled(Card)`
   background-color: ${(props) => props.theme.colors.bg.primary};
@@ -23,12 +24,6 @@ const ResturantContentContainer = styled(Card.Content)`
 const Address = styled(Text)`
   font-family: ${(props) => props.theme.fonts.body};
   font-size: ${(props) => props.theme.fontSizes.caption};
-`;
-
-const Title = styled(Text)`
-  font-family: ${(props) => props.theme.fonts.heading};
-  font-size: ${(props) => props.theme.fontSizes.body};
-  color: ${(props) => props.theme.colors.ui.primary};
 `;
 
 const Info = styled(View)`
@@ -52,6 +47,11 @@ const SectionEnd = styled(View)`
   justify-content: flex-end;
 `;
 
+const Icon = styled.Image`
+  width: 15px;
+  height: 15px;
+`;
+
 export const ResturantInfoCard = ({ resturant = {} }) => {
   const {
     name = "Some restruant",
@@ -71,7 +71,7 @@ export const ResturantInfoCard = ({ resturant = {} }) => {
       <ResturantCardCover key={name} source={{ uri: photos[0] }} />
       <ResturantContentContainer>
         <Info>
-          <Title>{name}</Title>
+          <Text variant="label">{name}</Text>
           <Section>
             <Rating>
               {ratingArray.map((item, index) => (
@@ -80,16 +80,14 @@ export const ResturantInfoCard = ({ resturant = {} }) => {
             </Rating>
             <SectionEnd>
               {isClosedTemporarily && (
-                <Text variant="label" style={{ color: "red" }}>
-                  CLOSED TEMPORARILY
-                </Text>
+                <Text variant="error">CLOSED TEMPORARILY</Text>
               )}
             </SectionEnd>
             <Spacer position="left" size="large">
               {isOpenNow && <SvgXml width="20" height="20" xml={open} />}
             </Spacer>
             <Spacer position="left" size="large">
-              <Image style={{ width: 15, height: 15 }} source={{ uri: icon }} />
+              <Icon source={{ uri: icon }} />
             </Spacer>
           </Section>
           <Address>{address}</Address>
