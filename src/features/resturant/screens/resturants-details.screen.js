@@ -9,10 +9,11 @@ export const ResturantDetailsScreen = ({ route }) => {
   const [lunchExpanded, setLunchExpanded] = useState(false);
   const [dinnerExpanded, setDinnerExpanded] = useState(false);
   const [drinksExpanded, setDrinksExpanded] = useState(false);
-  const { resturant } = route.params;
+  const { restaurant } = route.params;
+
   return (
     <SafeArea>
-      <ResturantInfoCard resturant={resturant} />
+      <ResturantInfoCard resturant={restaurant} />
       <ScrollView>
         <List.Accordion
           title="Breakfast"

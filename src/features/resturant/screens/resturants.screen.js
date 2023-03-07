@@ -6,6 +6,7 @@ import { ResturantInfoCard } from "../components/resturant-info-card.component";
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { SafeArea } from "../../../components/utility/safe-area.component";
 import { RestaurantContext } from "../../../services/restaurants/restaurants.context";
+import { FavouritesContext } from "../../../services/favourites/favourites.context";
 import { ActivityIndicator } from "react-native-paper";
 import { Search } from "../components/search.component";
 
@@ -25,6 +26,8 @@ const LoadingContainer = styled.View`
 
 export const ResturantsScreen = ({ navigation }) => {
   const { isLoading, restaurants } = useContext(RestaurantContext);
+  const { favourites, addToFavourites, removeFromFavourites } =
+    useContext(FavouritesContext);
 
   return (
     <SafeArea>
